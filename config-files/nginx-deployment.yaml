@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+# Kind od component
+kind: Deployment
+# Metadata for Deployment
+metadata:
+  # Name for Deployment
+  name: nginx-deployment
+  # Label for Deployment which is used by Service to make the connection
+  labels:
+    app: nginx
+# Spec for Deployment
+spec:
+  # Number of pods to be created
+  replicas: 2
+  # Selector makes the connection between Deployment and the pods with the
+  # labels specified by the matchLabels field.
+  selector:
+    matchLabels:
+      app: nginx
+  # Template (config) used to create pods
+  template:
+    metadata:
+      # Labels for the pods, used to make the connection with Deployment
+      labels:
+        app: nginx
+    # Specification for the pods
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.16
+        ports:
+        - containerPort: 8080

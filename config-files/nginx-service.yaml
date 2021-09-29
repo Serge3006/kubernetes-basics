@@ -1,0 +1,19 @@
+# The config file for the Service component
+apiVersion: v1
+# Kind od component
+kind: Service
+# Metadata for Service
+metadata:
+  # Name of the Service
+  name: nginx-service
+# Specification for Service
+spec:
+  # Selector should point to the label of the Deployment component it will expose.
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      # Port to access externally to the application
+      port: 80
+      # The targetPort which specifies the port the pod is exposing.
+      targetPort: 8080
